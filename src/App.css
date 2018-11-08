@@ -1,10 +1,15 @@
+body, html{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
 .App {
   text-align: center;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 25vmin;
 }
 
 .App-header {
@@ -16,6 +21,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
 }
 
 .App-link {
@@ -29,4 +35,28 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.draw {
+  display: inline-block;
+  background-color: #fff;
+}
+.display {
+  display: inline-block;
+  background-color: #fff;
+}
+.pick-colour{
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  margin-left: 4px;
+}
+.colour-radio{
+  display: inline-block;
+  height: 20px;
+  width: 30px;
 }
