@@ -1,14 +1,14 @@
 {
-  "main.css": "/draw-a-car/static/css/main.c2e12242.chunk.css",
-  "main.js": "/draw-a-car/static/js/main.5eedb06a.chunk.js",
-  "main.js.map": "/draw-a-car/static/js/main.5eedb06a.chunk.js.map",
-  "static/js/1.7caeb79e.chunk.js": "/draw-a-car/static/js/1.7caeb79e.chunk.js",
-  "static/js/1.7caeb79e.chunk.js.map": "/draw-a-car/static/js/1.7caeb79e.chunk.js.map",
-  "runtime~main.js": "/draw-a-car/static/js/runtime~main.a76309c9.js",
-  "runtime~main.js.map": "/draw-a-car/static/js/runtime~main.a76309c9.js.map",
-  "static/media/logo.svg": "/draw-a-car/static/media/logo.5d5d9eef.svg",
-  "static/css/main.c2e12242.chunk.css.map": "/draw-a-car/static/css/main.c2e12242.chunk.css.map",
-  "index.html": "/draw-a-car/index.html",
-  "precache-manifest.686d3fb27baae58c8c5186687914d518.js": "/draw-a-car/precache-manifest.686d3fb27baae58c8c5186687914d518.js",
-  "service-worker.js": "/draw-a-car/service-worker.js"
+  "main.css": "/draw-a-car-build/static/css/main.c2e12242.chunk.css",
+  "main.js": "/draw-a-car-build/static/js/main.24584a1b.chunk.js",
+  "main.js.map": "/draw-a-car-build/static/js/main.24584a1b.chunk.js.map",
+  "static/js/1.7caeb79e.chunk.js": "/draw-a-car-build/static/js/1.7caeb79e.chunk.js",
+  "static/js/1.7caeb79e.chunk.js.map": "/draw-a-car-build/static/js/1.7caeb79e.chunk.js.map",
+  "runtime~main.js": "/draw-a-car-build/static/js/runtime~main.bc70f5b3.js",
+  "runtime~main.js.map": "/draw-a-car-build/static/js/runtime~main.bc70f5b3.js.map",
+  "static/media/logo.svg": "/draw-a-car-build/static/media/logo.5d5d9eef.svg",
+  "static/css/main.c2e12242.chunk.css.map": "/draw-a-car-build/static/css/main.c2e12242.chunk.css.map",
+  "index.html": "/draw-a-car-build/index.html",
+  "precache-manifest.c2d082140c0cc7b8b4c0f91be6d59f63.js": "/draw-a-car-build/precache-manifest.c2d082140c0cc7b8b4c0f91be6d59f63.js",
+  "service-worker.js": "/draw-a-car-build/service-worker.js"
 }

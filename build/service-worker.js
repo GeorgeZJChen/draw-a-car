@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/draw-a-car/precache-manifest.686d3fb27baae58c8c5186687914d518.js"
+  "/draw-a-car-build/precache-manifest.c2d082140c0cc7b8b4c0f91be6d59f63.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/draw-a-car/index.html", {
+workbox.routing.registerNavigationRoute("/draw-a-car-build/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
