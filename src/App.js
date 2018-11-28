@@ -1,37 +1,51 @@
 import React, { Component } from 'react';
 import * as tf from '@tensorflow/tfjs'
-import logo from './logo.svg';
 import './App.css';
+import Header from './js/header.js'
 
-import PARAMS from './js/params.js'
-import Draw from './js/draw.js'
+import Studio from './js/studio.js'
 import Model from './js/model.js'
 
 class App extends Component {
-  componentDidMount(){
-    this.model = new Model()
-    this.initContour()
+  constructor(props){
+    super(props)
+    window.App = this
   }
-  generate(){
+  componentDidMount(){
+    this.model = new Model(()=>{
+      this.refs.loading.className += ' off'
+    })
+    this.addContour('static/img/2.jpg')
+  }
+  generate(frame, canvas_id){
     if(!this.model) return alert('Model not loaded')
 
-    const input = this.refs.draw.refs.element
-    this.model.run({ sketch: input, colour: this.pickedColour||[58,60,200] })
-  }
-  pickColour(colour){
-    console.log(colour);
-    this.pickedColour = colour
-  }
-  initContour(){
+    window.timestart = new Date().getTime()
+    const output = this.model.run({
+      sketch: this.refs.studio.getSketch(),
+      colour: this.refs.studio.getColour()||[58,60,200]
+    })
+    console.log('elapsed: '+(new Date().getTime()-window.timestart))
 
-    const IMAGE_URL = 'static/img/1234.jpg'
+
+    const canvas = frame.refs.canvas
+    tf.toPixels(tf.reshape(tf.cast(output, 'int32'), [256,256,3]), canvas)
+    console.log('elapsed: '+(new Date().getTime()-window.timestart))
+
+
+
+    frame.use()
+    setTimeout(()=>{
+      this.refs.studio.update()
+    },100)
+  }
+  addContour(img_url, onerror){
+
     const img = new Image(256,256)
-    img.src = IMAGE_URL
+    img.src = img_url
     img.onload = ()=>{
 
-      window.timestart = new Date().getTime()
-
-      const IMG_WIDTH = PARAMS.IMG_WIDTH
+      const IMG_WIDTH = 256
       const canvas = document.createElement('canvas')
       canvas.width = IMG_WIDTH
       canvas.height = IMG_WIDTH
@@ -50,51 +64,25 @@ class App extends Component {
         contour[j++] = fix(data[i])
       }
 
-      tf.toPixels(tf.reshape(tf.cast(contour, 'int32'), [256,256,1]), this.refs.draw.refs.element)
+      tf.toPixels(tf.reshape(tf.cast(contour, 'int32'), [256,256,1]), canvas).then(()=>{
+        const d_canvas = this.refs.studio.getSketch()
+        d_canvas.getContext('2d').drawImage(canvas, 0, 0, d_canvas.width, d_canvas.height)
+      })
 
-      console.log('elapsed: '+(new Date().getTime()-window.timestart))
     }
-
-
-
+    img.onerror = (err)=>{
+      onerror()
+    }
   }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <span style={{position: 'relative'}}>
-            <Draw ref='draw'/>
-            <canvas id='123456' width={256} height={256} className='display'></canvas>
-          </span>
-          <div style={{
-            position: 'relative'
-          }}>
-            <button style={{
-              marginRight: 6,
-              width: 75
-            }} onClick={()=>{this.refs.draw.clear()}}>CLEAR</button>
-
-            <input className='pick-colour' onChange={()=>{this.pickColour([20,20,200])}} defaultChecked type='radio' name='pick-colour'/>
-            <span className='colour-radio' style={{backgroundColor:'rgb(20, 20, 200)'}}></span>
-            <input className='pick-colour' onChange={()=>{this.pickColour([200,20,20])}} type='radio' name='pick-colour'/>
-            <span className='colour-radio' style={{backgroundColor:'rgb(200, 20, 20)'}}></span>
-            <input className='pick-colour' onChange={()=>{this.pickColour([250,250,250])}} type='radio' name='pick-colour'/>
-            <span className='colour-radio' style={{backgroundColor:'rgb(250, 250, 250)'}}></span>
-            <input className='pick-colour' onChange={()=>{this.pickColour([150,150,150])}} type='radio' name='pick-colour'/>
-            <span className='colour-radio' style={{backgroundColor:'rgb(150, 150, 150)'}}></span>
-            <input className='pick-colour' onChange={()=>{this.pickColour([20,20,20])}} type='radio' name='pick-colour'/>
-            <span className='colour-radio' style={{backgroundColor:'rgb(20, 20, 20)'}}></span>
-
-            <button style={{
-              marginLeft: 10,
-              width: 50
-            }} onClick={()=>{this.generate()}}>GO</button>
-          </div>
-        </header>
+        <Header title={'Draw A Car'} ref='header'/>
+        <div className='main-body' style={{position:'relative', backgroundImage: 'url(static/img/bg.jpg)'}}>
+          <Studio ref='studio'/>
+        </div>
+        <footer className='App-footer'></footer>
+        <div className='loading' ref='loading'><span className='loading-text'>Loading...<br/><span style={{fontSize:20}}>正在加载...</span></span></div>
       </div>
     );
   }

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/draw-a-car-build/precache-manifest.c2d082140c0cc7b8b4c0f91be6d59f63.js"
+  "/draw-a-car-build/precache-manifest.6f629a9053da5f9d5919138f39d066d3.js"
 );
 
 workbox.clientsClaim();

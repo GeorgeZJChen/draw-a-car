@@ -2,6 +2,7 @@ body, html{
   margin: 0;
   padding: 0;
   width: 100%;
+  user-select: none;
 }
 .App {
   text-align: center;
@@ -9,12 +10,12 @@ body, html{
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 25vmin;
+  height: 70px;
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +23,11 @@ body, html{
   font-size: calc(10px + 2vmin);
   color: white;
 
+}
+.main-body{
+  background-color: #fff;
+  padding: 30px 0;
+  background-color: rgba(134, 136, 138, 1);
 }
 
 .App-link {
@@ -41,7 +47,7 @@ body, html{
   display: inline-block;
   background-color: #fff;
 }
-.display {
+.output {
   display: inline-block;
   background-color: #fff;
 }
@@ -59,4 +65,210 @@ body, html{
   display: inline-block;
   height: 20px;
   width: 30px;
+}
+.frame{
+  display: inline-block;
+  margin: 5px;
+  vertical-align: top;
+  position: relative;
+  padding: 8px 8px;
+  box-shadow: 0 0 6px 3px rgba(76, 76, 76, 0.5);
+  background-color: rgba(134, 136, 138, 0.5);
+}
+.frame-input{
+  margin: 0;
+  min-width: 523px;
+  width: 40%;
+  margin-bottom: 30px;
+  border-radius: 1%;
+  box-shadow: 0 0 8px 4px rgba(76, 76, 76, 0.5);
+}
+.display{
+  display: inline-block;
+  width: 40%;
+  max-width: 534px;
+  text-align: center;
+}
+.studio{
+  position: relative;
+  width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+.btn-add-frame{
+  width: 256px;
+  height: 30px;
+  font-size: 24px;
+  margin: 5px;
+}
+.colour-picker{
+  display: inline-flex;
+  width: 256px;
+  height: 30px;
+}
+.colour-block{
+  flex: 1;
+  flex-direction: row;
+  height: 100%;
+  position: relative;
+  margin: 0 2px;
+}
+.colour-block:last-child{
+  margin-right: 0;
+}
+.colour-block:first-child{
+  margin-left: 0;
+}
+.colour-block-bg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: all ease-in-out 0.1s;
+}
+.colour-picker-radio{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  opacity: 0;
+  z-index: 2;
+  position: relative;
+}
+.colour-block-bg{
+  box-shadow: 0 0 1px 1px rgba(180,180,180,0.5);
+}
+.colour-picker-radio:hover+.colour-block-bg{
+  transform: scale(1.15, 1.15);
+  z-index: 5;
+}
+.colour-picker-radio:checked+.colour-block-bg{
+  box-shadow: 0 0 1px 1px rgba(220,220,220,0.5);
+  transform: scale(1.1, 1.1);
+
+}
+.btn-go{
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgb(220,220,220);
+}
+.btn-go:focus{
+  outline: none;
+  border: none;
+}
+.btn-go:hover{
+  box-shadow: 0 0 2px 1px rgba(20,20,20,0.3);
+  background-color: rgb(210,210,210);
+}
+.btn-go:active{
+  box-shadow: none;
+  background-color: rgb(200,200,200);
+}
+.toolkit{
+  width: 100%;
+  height: 30px;
+  padding: 0 5px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  text-align: left;
+}
+.tool{
+  display: inline-block;
+  margin-right: 5px;
+  width: 30px;
+  height: 100%;
+  position: relative;
+  border-radius: 15%;
+  overflow: hidden;
+}
+.tool.right{
+  margin-right: 0;
+  margin-left: 5px;
+  float: right;
+}
+.tool-radio{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}
+.tool-manifest{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(220,220,220,1);
+}
+.tool-radio:checked+.tool-manifest{
+  background-color: rgba(190,190,190,0.9);
+  box-shadow: inset 0 0 5px 2px rgba(250,250,250,0.8);
+}
+.tool-radio:hover+.tool-manifest{
+  background-color: rgba(210,210,220,0.9);
+}
+.tool-radio:active+.tool-manifest{
+  background-color: rgba(190,190,190,0.9);
+}
+.tool-radio.ckeckbox:checked+.tool-manifest{
+  background-color: rgba(220,220,220,1);
+  box-shadow: none;
+}
+.tool-icon{
+  padding: 10%;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+.cursor{
+  position: fixed;
+  display: none;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(10%,-70%);
+
+}
+.cursor.on{
+  display: block;
+}
+.App-footer{
+  height: 80px;
+  width: 100%;
+  background-color: #282c34;
+}
+.loading{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background-color: rgba(39, 45, 56, 0.9);
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  vertical-align: middle;
+  opacity: 1;
+  visibility: visible;
+  cursor: progress;
+}
+.loading-text{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.loading.off{
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity,visibility ease-in-out 0.2s,0.3s;
 }

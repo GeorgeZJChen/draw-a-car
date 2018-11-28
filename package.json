@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@tensorflow/tfjs": "^0.13.3",
+    "axios": "^0.18.0",
     "express": "^4.16.4",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
